@@ -8,15 +8,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --bg: #0f172a;
-            --container-bg: #1e293b;
-            --card-bg: #ffffff;
-            --card-border: #e2e8f0;
-            --accent: #2563eb;
-            --accent-glow: rgba(37, 99, 235, 0.08);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --pill-bg: #f1f5f9;
+            --bg: #090d16;             /* Original Deep Dark Canvas Background */
+            --card-bg: #ffffff;        /* Professional Crisp White Cards */
+            --card-border: #e2e8f0;    /* Muted Border for White Cards */
+            --accent: #3b82f6;         /* Original Electric Blue Accent */
+            --accent-glow: rgba(59, 130, 246, 0.1);
+            --text-main: #0f172a;      /* Dark Charcoal Text for Great Readability */
+            --text-muted: #64748b;    /* Muted Text for Sub-labels */
+            --pill-bg: #f1f5f9;       /* Light Grey Background for Skill Pills */
         }
 
         * {
@@ -36,22 +35,18 @@
             justify-content: center;
         }
 
-        /* Bento Grid Wrapper Container */
+        /* Bento Grid Wrapper */
         .container {
-            max-width: 1300px;
+            max-width: 1250px;
             width: 100%;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(135px, auto);
+            grid-auto-rows: minmax(140px, auto);
             gap: 1.25rem;
-            background-color: var(--container-bg);
-            padding: 1.5rem;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
         }
 
-        /* Bento Grid Cards */
+        /* Generic Bento Card Box Styling */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -60,53 +55,52 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .card:hover {
             border-color: var(--accent);
-            box-shadow: 0 10px 25px var(--accent-glow);
+            box-shadow: 0 10px 30px var(--accent-glow);
             transform: translateY(-2px);
         }
 
         /* Section Typography Headers */
         .card h2 {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.075em;
             color: var(--accent);
-            margin-bottom: 0.85rem;
+            margin-bottom: 0.75rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        /* Grid Item Multi-Column Sizing */
+        /* Grid Item Multi-Column Assignments */
         .hero-card {
             grid-column: span 3;
             grid-row: span 2;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            /* Keeps the Hero card dark as requested to balance the layout */
+            background: linear-gradient(135deg, #131a26 0%, #090d16 100%);
+            border: 1px solid #1e293b;
             color: #ffffff;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            padding: 2.5rem;
-            border: none;
+            padding: 2rem;
         }
 
         .hero-text-block {
             max-width: 55%;
         }
 
-        .chart-panel-wrapper {
+        .chart-panel {
             width: 40%;
             height: 100%;
             min-height: 170px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 0.85rem;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.75rem;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -132,7 +126,7 @@
         .experience-card {
             grid-column: span 2;
             grid-row: span 3;
-            max-height: 510px;
+            max-height: 520px;
             overflow-y: auto;
         }
 
@@ -142,37 +136,37 @@
 
         .references-card {
             grid-column: span 4;
+            text-align: center;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 2rem 1.5rem;
+            align-items: center;
+            padding: 2.5rem 1.5rem;
         }
 
-        /* Element Fine Typography Custom Styles */
+        /* Element Custom Stylings */
         .hero-card h1 {
-            font-size: 2.4rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            background: linear-gradient(to right, #ffffff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
         }
 
         .hero-card p {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: #94a3b8;
             margin-top: 0.5rem;
             font-weight: 400;
         }
 
-        /* PFP Circular Mask Layout */
+        /* Profile Picture Frame */
         .profile-container {
             position: relative;
-            width: 75px;
-            height: 75px;
-            margin-bottom: 0.75rem;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
             align-self: flex-start;
         }
 
@@ -190,8 +184,8 @@
 
         .profile-pic i {
             color: var(--text-muted);
-            width: 26px;
-            height: 26px;
+            width: 32px;
+            height: 32px;
         }
 
         .edit-pfp-btn {
@@ -200,36 +194,35 @@
             right: 0;
             background: var(--accent);
             border: none;
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: background 0.2s;
         }
 
+        .edit-pfp-btn:hover { background: #2563eb; }
         #pfp-input { display: none; }
 
         .contact-list {
             list-style: none;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
         }
 
         .contact-list li {
-            margin-bottom: 0.65rem;
+            margin-bottom: 0.75rem;
             word-break: break-all;
         }
 
         .contact-list span {
             display: block;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.1rem;
         }
 
         .contact-list a {
@@ -245,14 +238,12 @@
             background-color: var(--accent);
             color: white;
             text-decoration: none;
-            padding: 0.65rem;
+            padding: 0.75rem;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-top: 0.75rem;
-            transition: background-color 0.2s;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
-        .btn-connect:hover { background-color: #1d4ed8; }
 
         .pill-box {
             display: flex;
@@ -264,9 +255,9 @@
         .pill {
             background-color: var(--pill-bg);
             color: var(--text-main);
-            padding: 0.35rem 0.7rem;
+            padding: 0.35rem 0.75rem;
             border-radius: 6px;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 500;
             border: 1px solid var(--card-border);
             display: inline-flex;
@@ -274,21 +265,25 @@
             gap: 0.35rem;
         }
 
-        .pill i { width: 13px; height: 13px; }
+        .pill i { width: 14px; height: 14px; }
 
-        .skill-group { margin-bottom: 1.1rem; }
-        .skill-group h3 { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+        .skill-group { margin-bottom: 1.25rem; }
+        .skill-group h3 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
 
-        /* Timeline Items Layout */
+        /* Compact Timeline Styling */
         .timeline-compact {
             display: flex;
             flex-direction: column;
-            gap: 1.15rem;
+            gap: 1.25rem;
         }
 
         .timeline-node {
             position: relative;
-            padding-left: 1.25rem;
+            padding-left: 1rem;
             border-left: 2px solid var(--card-border);
         }
 
@@ -298,15 +293,15 @@
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.25rem;
         }
 
         .node-title { font-weight: 700; color: var(--text-main); }
-        .node-date { color: var(--accent); font-weight: 600; font-size: 0.78rem; }
-        .node-company { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.35rem; font-weight: 500; }
+        .node-date { color: var(--accent); font-weight: 600; font-size: 0.8rem; }
+        .node-company { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; }
         .node-details { font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; }
 
-        /* Academic Flex */
+        /* Education Layout Alignment */
         .edu-flex {
             display: flex;
             justify-content: space-between;
@@ -314,34 +309,33 @@
             gap: 1.5rem;
         }
         .edu-item { width: 50%; }
-        .edu-item h3 { font-size: 0.9rem; font-weight: 700; }
-        .edu-item p { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; }
+        .edu-item h3 { font-size: 0.95rem; font-weight: 700; }
+        .edu-item p { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
 
-        .request-text-box {
-            font-size: 1.15rem;
+        .request-text {
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--text-main);
-            letter-spacing: 0.025em;
-            margin-top: 0.25rem;
+            margin-top: 0.5rem;
         }
 
-        /* Scrollbar track modifications */
-        .experience-card::-webkit-scrollbar { width: 5px; }
+        /* Scrollbar customization */
+        .experience-card::-webkit-scrollbar { width: 6px; }
         .experience-card::-webkit-scrollbar-track { background: transparent; }
         .experience-card::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 10px; }
         .experience-card::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        /* Responsive Breakdowns */
+        /* Responsive Matrix Breakdowns */
         @media (max-width: 1024px) {
             .container { grid-template-columns: repeat(2, 1fr); }
             .hero-card { grid-column: span 2; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-            .hero-text-block, .chart-panel-wrapper { max-width: 100%; width: 100%; }
+            .hero-text-block, .chart-panel { max-width: 100%; width: 100%; }
             .contact-card { grid-column: span 2; grid-row: span 1; flex-direction: row; align-items: center;}
             .references-card { grid-column: span 2; }
         }
 
         @media (max-width: 680px) {
-            .container { grid-template-columns: 1fr; padding: 1rem; }
+            .container { grid-template-columns: 1fr; }
             .hero-card, .contact-card, .summary-card, .skills-card, .experience-card, .education-card, .references-card {
                 grid-column: span 1;
                 grid-row: auto;
@@ -350,7 +344,7 @@
             .edu-flex { flex-direction: column; gap: 1rem; }
             .edu-item { width: 100%; }
             body { padding: 1rem; }
-            .hero-card h1 { font-size: 1.8rem; }
+            .hero-card h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -363,8 +357,8 @@
                 <h1>Dominic Kaloki Muia</h1>
                 <p>Data Scientist & Financial Systems Analyst</p>
             </div>
-            <div class="chart-panel-wrapper">
-                <canvas id="livePortfolioMatrix"></canvas>
+            <div class="chart-panel">
+                <canvas id="matrixSliderChart"></canvas>
             </div>
         </div>
 
@@ -375,8 +369,8 @@
                 <div id="pfp-display" class="profile-pic">
                     <i data-lucide="user"></i>
                 </div>
-                <button class="edit-pfp-btn" onclick="document.getElementById('pfp-input').click()" title="Update Profile Photo">
-                    <i data-lucide="camera" style="width:12px; height:12px;"></i>
+                <button class="edit-pfp-btn" onclick="document.getElementById('pfp-input').click()" title="Change Profile Picture">
+                    <i data-lucide="camera" style="width: 14px; height: 14px;"></i>
                 </button>
                 <input type="file" id="pfp-input" accept="image/*" onchange="saveProfilePicture(this)">
             </div>
@@ -392,7 +386,7 @@
 
         <div class="card summary-card">
             <h2>Executive Briefing</h2>
-            <p style="font-size: 0.88rem; line-height: 1.55; color: var(--text-muted);">
+            <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-muted);">
                 Analytical professional connecting machine learning architectures with core financial frameworks. Specializing in high-density data pipeline validation, econometric analysis, automated audit flows, and end-to-end multi-layered data annotation management.
             </p>
         </div>
@@ -496,24 +490,25 @@
 
         <div class="card references-card">
             <h2>Professional References</h2>
-            <div class="request-text-box">Available Upon Request</div>
+            <div class="request-text">Available Upon Request</div>
         </div>
 
     </div>
 
     <script>
-        // Init icon layout bindings
+        // Start Lucide Icon vectors
         lucide.createIcons();
 
-        // Local Storage checking routines for PFP persistence
+        // Check local browser storage for custom PFP
         document.addEventListener("DOMContentLoaded", () => {
             const savedPfp = localStorage.getItem("portfolio_pfp");
             if (savedPfp) {
                 document.getElementById("pfp-display").innerHTML = `<img src="${savedPfp}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
             }
-            startMatrixChartLoop();
+            initSlidingChart();
         });
 
+        // Store profile image locally as base64 data string
         function saveProfilePicture(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -526,32 +521,32 @@
             }
         }
 
-        // Automatic Sliding Chart Datasets
-        function startMatrixChartLoop() {
-            const ctx = document.getElementById('livePortfolioMatrix').getContext('2d');
+        // Initialize automated Chart.js slide playlist inside Hero Panel
+        function initSlidingChart() {
+            const ctx = document.getElementById('matrixSliderChart').getContext('2d');
             
             const datasets = [
                 {
-                    label: 'Domain Mastery %',
+                    label: 'Domain Expertise %',
                     data: [92, 88, 85, 90],
                     labels: ['Data Sci', 'Finance', 'AI Label', 'Stats']
                 },
                 {
-                    label: 'Core Stack %',
+                    label: 'Stack Performance %',
                     data: [95, 90, 85, 80],
                     labels: ['Excel', 'Python', 'SQL', 'BI Tools']
                 }
             ];
 
-            let index = 0;
+            let activeIndex = 0;
 
-            const portfolioChart = new Chart(ctx, {
+            const chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: datasets[index].labels,
+                    labels: datasets[activeIndex].labels,
                     datasets: [{
-                        label: datasets[index].label,
-                        data: datasets[index].data,
+                        label: datasets[activeIndex].label,
+                        data: datasets[activeIndex].data,
                         backgroundColor: 'rgba(59, 130, 246, 0.7)',
                         borderColor: '#3b82f6',
                         borderWidth: 1,
@@ -572,13 +567,13 @@
                 }
             });
 
-            // Slide interval looping system (every 4 seconds)
+            // Cycle active metrics display every 4 seconds
             setInterval(() => {
-                index = (index + 1) % datasets.length;
-                portfolioChart.data.labels = datasets[index].labels;
-                portfolioChart.data.datasets[0].data = datasets[index].data;
-                portfolioChart.data.datasets[0].label = datasets[index].label;
-                portfolioChart.update();
+                activeIndex = (activeIndex + 1) % datasets.length;
+                chart.data.labels = datasets[activeIndex].labels;
+                chart.data.datasets[0].data = datasets[activeIndex].data;
+                chart.data.datasets[0].label = datasets[activeIndex].label;
+                chart.update();
             }, 4000);
         }
     </script>
