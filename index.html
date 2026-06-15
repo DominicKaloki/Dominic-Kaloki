@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominic K. Muia | Portfolio</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Dominic K. Muia | Portfolio">
+    <meta name="description" content="Accounting Expert, Data Analyst, Economist, and Statistician specializing in machine learning architectures, automated audit flows, and financial framework validation.">
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dominic K. Muia | Accounting Expert & Data Analyst">
+    <meta property="og:description" content="Bridging the gap between financial frameworks, statistical modeling, and data analytics.">
+    
+    <!-- Fonts & Core Dependencies -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --accent: #2563eb;
+            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --accent-glow: rgba(37, 99, 235, 0.06);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --pill-bg: #f1f5f9;
+            --pill-border: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.02);
+            --shadow-md: 0 12px 30px -5px rgba(15, 23, 42, 0.04), 0 8px 12px -6px rgba(15, 23, 42, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 64, 175, 0.02) 0px, transparent 50%);
+            color: var(--text-main);
+            padding: 3rem 5%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 1.75rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card:hover {
+            border-color: #cbd5e1;
+            box-shadow: var(--shadow-md), 0 0 0 1px rgba(37, 99, 235, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .card h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero-card {
+            grid-column: span 3;
+            grid-row: span 2;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .hero-text-block { max-width: 55%; }
+        
+        .chart-panel {
+            width: 40%;
+            height: 100%;
+            min-height: 190px;
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-card {
+            grid-column: span 1;
+            grid-row: span 2;
+            justify-content: space-between;
+        }
+
+        .summary-card { grid-column: span 2; justify-content: center; }
+        .skills-card { grid-column: span 2; grid-row: span 2; }
+        
+        .experience-card {
+            grid-column: span 2;
+            grid-row: span 3;
+            max-height: 560px;
+            overflow-y: auto;
+        }
+
+        .education-card { grid-column: span 2; justify-content: center; }
+        
+        .references-card {
+            grid-column: span 4;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(to right, #ffffff, #f8fafc, #ffffff);
+        }
+
+        .hero-card h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-main);
+            line-height: 1.15;
+        }
+
+        .hero-card p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-top: 0.85rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 84px;
+            height: 84px;
+            margin-bottom: 1.25rem;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            object-fit: cover;
+            border: 1px solid var(--card-border);
+            background: var(--pill-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-list { list-style: none; font-size: 0.9rem; }
+        .contact-list li { margin-bottom: 0.85rem; }
+        .contact-list span { display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.15rem; font-weight: 600;}
+        .contact-list a, .contact-list p { color: var(--text-main); text-decoration: none; font-weight: 600; }
+        .contact-list a:hover { color: var(--accent); }
+
+        .btn-connect {
+            display: block;
+            text-align: center;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 0.85rem;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 1.25rem;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+            transition: opacity 0.2s;
+        }
+        .btn-connect:hover { opacity: 0.9; }
+
+        .pill-box { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        
+        .pill {
+            background-color: var(--pill-bg);
+            color: var(--text-main);
+            padding: 0.4rem 0.85rem;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border: 1px solid var(--pill-border);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .pill i { width: 14px; height: 14px; }
+        .skill-group { margin-bottom: 1.5rem; }
+        .skill-group:last-child { margin-bottom: 0; }
+        .skill-group h3 { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;}
+
+        .timeline-compact { display: flex; flex-direction: column; gap: 1.5rem; }
+        
+        .timeline-node {
+            position: relative;
+            padding-left: 1.25rem;
+            border-left: 2px solid var(--card-border);
+        }
+
+        .timeline-node:hover { border-left-color: var(--accent); }
+
+        .node-header { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.25rem; gap: 0.5rem; }
+        .node-title { font-weight: 700; color: var(--text-main); }
+        .node-date { color: var(--accent); font-weight: 700; font-size: 0.8rem; white-space: nowrap; }
+        .node-company { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; }
+        .node-details { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+        .edu-flex { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; }
+        .edu-item { width: 50%; }
+        .edu-item h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
+        .edu-item p { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+        .request-text { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-main); margin-top: 0.25rem; }
+
+        .experience-card::-webkit-scrollbar { width: 5px; }
+        .experience-card::-webkit-scrollbar-track { background: transparent; }
+        .experience-card::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .experience-card::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        @media (max-width: 1100px) {
+            .container { grid-template-columns: repeat(2, 1fr); }
+            .hero-card { grid-column: span 2; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+            .hero-text-block, .chart-panel { max-width: 100%; width: 100%; }
+            .contact-card { grid-column: span 2; grid-row: span 1; flex-direction: row; align-items: center; gap: 2rem;}
+            .profile-container { margin-bottom: 0; }
+            .contact-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; width: 60%; }
+            .contact-list li { margin-bottom: 0; }
+            .btn-connect { margin-top: 0; width: auto; padding: 0.85rem 1.5rem; }
+            .references-card { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1.5rem; }
+            .container { grid-template-columns: 1fr; gap: 1.25rem; }
+            .hero-card, .contact-card, .summary-card, .skills-card, .experience-card, .education-card, .references-card {
+                grid-column: span 1;
+                grid-row: auto;
+            }
+            .contact-card { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+            .contact-list { grid-template-columns: 1fr; width: 100%; }
+            .btn-connect { width: 100%; }
+            .edu-flex { flex-direction: column; gap: 1.25rem; }
+            .edu-item { width: 100%; }
+            .hero-card h1 { font-size: 2.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container" aria-label="Portfolio Grid">
+
+        <!-- Hero Panel Section -->
+        <section class="card hero-card">
+            <div class="hero-text-block">
+                <h1>Dominic Kaloki Muia</h1>
+                <!-- UPDATED PROFESSIONAL DEFINITION STRING -->
+                <p>Accounting Expert | Data Analyst | Economist | Statistician</p>
+            </div>
+            <div class="chart-panel" aria-hidden="true">
+                <canvas id="matrixSliderChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Connectivity Hub Section -->
+        <section class="card contact-card">
+            <h2>Connection Hub</h2>
+            
+            <div class="profile-container">
+                <div id="pfp-display" class="profile-pic">
+                    <img src="profile.png" alt="Dominic Kaloki Muia">
+                </div>
+            </div>
+
+            <ul class="contact-list">
+                <li><span>Location</span><p>Nairobi, Kenya</p></li>
+                <li><span>Email Direct</span><a href="mailto:kalokidmnc001@gmail.com">kalokidmnc001@gmail.com</a></li>
+                <li><span>Mobile Line</span><p>+254 723603736</p></li>
+                <li><span>Professional Network</span><a href="https://www.linkedin.com/in/dominicmuia-b33a91123/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
+            </ul>
+            <a href="mailto:kalokidmnc001@gmail.com" class="btn-connect">Email Me</a>
+        </section>
+
+        <!-- Executive Summary Section -->
+        <section class="card summary-card">
+            <h2>Executive Briefing</h2>
+            <p style="font-size: 0.92rem; line-height: 1.6; color: var(--text-muted);">
+                Analytical professional connecting machine learning architectures with core financial frameworks. Specializing in high-density data pipeline validation, econometric analysis, automated audit flows, and end-to-end multi-layered data annotation management.
+            </p>
+        </section>
+
+        <!-- Core Stack Capabilities Section -->
+        <section class="card skills-card">
+            <h2>Capabilities Stack</h2>
+            
+            <div class="skill-group">
+                <h3>Data Stack</h3>
+                <div class="pill-box">
+                    <span class="pill"><i data-lucide="file-spreadsheet" style="color: #107c41;"></i>Advanced Excel</span>
+                    <span class="pill">Python</span><span class="pill">R Studio</span><span class="pill">SQL</span>
+                    <span class="pill">STATA</span><span class="pill">SPSS</span><span class="pill">Pandas / NumPy</span>
+                    <span class="pill">Scikit-Learn</span><span class="pill">Power BI</span><span class="pill">Tableau</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3>Financial Platforms</h3>
+                <div class="pill-box">
+                    <span class="pill">SUN Accounting</span><span class="pill">OPERA PMS</span>
+                    <span class="pill">Material Control (MC)</span><span class="pill">SAP Suite</span>
+                    <span class="pill">QuickBooks</span><span class="pill">Invoice Audit</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3>AI Data Annotation</h3>
+                <div class="pill-box">
+                    <span class="pill">LiDAR 3D Point Clouds</span><span class="pill">Image Segmentation</span>
+                    <span class="pill">NLP Target NER</span><span class="pill">Labelbox</span><span class="pill">CVAT</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Log Section -->
+        <section class="card experience-card">
+            <h2>Timeline Log</h2>
+            <div class="timeline-compact">
+
+                <div class="timeline-node">
+                    <div class="node-header">
+                        <span class="node-title">Accounts Payable</span>
+                        <span class="node-date">2025 - Present</span>
+                    </div>
+                    <div class="node-company">The Ritz Carlton Masai Mara Safari Camp</div>
+                    <p class="node-details">Validates enterprise-level corporate invoice parameters against inputs to maximize internal VAT compliance; maps logistics data chains securely across Material Control tracking architectures and SUN Accounting registers.</p>
+                </div>
+
+                <div class="timeline-node">
+                    <div class="node-header">
+                        <span class="node-title">Accounts Payable Executive</span>
+                        <span class="node-date">2024 - 2025</span>
+                    </div>
+                    <div class="node-company">The Crowne Plaza Nairobi Airport Hotel</div>
+                    <p class="node-details">Supervised ledger integrity mapping projects, verified cross-departmental expense registers, managed banking checks, and automated system synchronization routines.</p>
+                </div>
+
+                <div class="timeline-node">
+                    <div class="node-header">
+                        <span class="node-title">Data Annotator</span>
+                        <span class="node-date">2024</span>
+                    </div>
+                    <div class="node-company">Remotasks Engine</div>
+                    <p class="node-details">Mapped computer vision targets using polygonal arrays, isolated semantic layers, structured 3D spatial points inside complex autonomous LiDAR strings, and tracked NLP intent vectors.</p>
+                </div>
+
+                <div class="timeline-node">
+                    <div class="node-header">
+                        <span class="node-title">Statistical Analyst Freelance</span>
+                        <span class="node-date">2022 - 2024</span>
+                    </div>
+                    <div class="node-company">WriterPro Core Infrastructure</div>
+                    <p class="node-details">Constructed algorithmic frameworks to forecast macro household metrics, automating data scrubbing workflows using targeted custom modules.</p>
+                </div>
+
+                <div class="timeline-node">
+                    <div class="node-header">
+                        <span class="node-title">Research Assistant</span>
+                        <span class="node-date">2020 - 2022</span>
+                    </div>
+                    <div class="node-company">Kenya National Bureau of Statistics (KNBS)</div>
+                    <p class="node-details">Deployed continuous field data collection routines, structuring extensive socioeconomic records to refine downstream validation profiles.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Academic Achievements Section -->
+        <section class="card education-card">
+            <h2>Academic Credentials</h2>
+            <div class="edu-flex">
+                <div class="edu-item">
+                    <h3>B.Sc. Economics and Statistics</h3>
+                    <p>Egerton University (Upper Second Class)</p>
+                </div>
+                <div class="edu-item">
+                    <h3>Data Science Foundations</h3>
+                    <p>AICE Africa & ALX Global Academy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security and Reference Verification Section -->
+        <section class="card references-card">
+            <h2>Professional References</h2>
+            <div class="request-text">Available Upon Request</div>
+        </section>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initSlidingChart();
+        });
+
+        function initSlidingChart() {
+            const ctx = document.getElementById('matrixSliderChart').getContext('2d');
+            
+            const datasets = [
+                {
+                    label: 'Domain Expertise %',
+                    data: [92, 88, 85, 90],
+                    labels: ['Data Sci', 'Finance', 'AI Label', 'Stats']
+                },
+                {
+                    label: 'Stack Performance %',
+                    data: [95, 90, 85, 80],
+                    labels: ['Excel', 'Python', 'SQL', 'BI Tools']
+                }
+            ];
+
+            let activeIndex = 0;
+
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: datasets[activeIndex].labels,
+                    datasets: [{
+                        label: datasets[activeIndex].label,
+                        data: datasets[activeIndex].data,
+                        backgroundColor: 'rgba(37, 99, 235, 0.12)',
+                        borderColor: '#2563eb',
+                        borderWidth: 1.5,
+                        borderRadius: 6,
+                        hoverBackgroundColor: 'rgba(37, 99, 235, 0.25)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0f172a',
+                            titleFont: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
+                            bodyFont: { family: 'Plus Jakarta Sans', size: 11 },
+                            padding: 10
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            grid: { display: false }, 
+                            ticks: { 
+                                color: '#475569', 
+                                font: { family: 'Plus Jakarta Sans', size: 9, weight: '800' }
+                            } 
+                        },
+                        y: { 
+                            min: 0, 
+                            max: 100, 
+                            grid: { color: '#f1f5f9' }, 
+                            ticks: { 
+                                color: '#475569', 
+                                font: { family: 'Plus Jakarta Sans', size: 8, weight: '800' }
+                            } 
+                        }
+                    }
+                }
+            });
+
+            setInterval(() => {
+                activeIndex = (activeIndex + 1) % datasets.length;
+                chart.data.labels = datasets[activeIndex].labels;
+                chart.data.datasets[0].data = datasets[activeIndex].data;
+                chart.data.datasets[0].label = datasets[activeIndex].label;
+                chart.update('active');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
